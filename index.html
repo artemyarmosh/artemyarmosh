@@ -29,6 +29,8 @@
 
     html { scroll-behavior: smooth; }
 
+    * { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3C!-- red stick body --%3E%3Cline x1='52' y1='52' x2='26' y2='26' stroke='%23d32f2f' stroke-width='5' stroke-linecap='round'/%3E%3C!-- silver metal section --%3E%3Cline x1='26' y1='26' x2='16' y2='16' stroke='%23bdbdbd' stroke-width='3.5' stroke-linecap='round'/%3E%3Cline x1='23' y1='23' x2='19' y2='19' stroke='%23e0e0e0' stroke-width='1' stroke-linecap='round'/%3E%3C!-- white hand base --%3E%3Cellipse cx='13' cy='13' rx='5' ry='4' transform='rotate(-45 13 13)' fill='%23f5f5f5' stroke='%23ccc' stroke-width='0.8'/%3E%3C!-- index finger pointing --%3E%3Crect x='3' y='2' width='4' height='9' rx='2' fill='%23f5f5f5' stroke='%23ccc' stroke-width='0.8' transform='rotate(-45 5 6)'/%3E%3C!-- curled fingers --%3E%3Cellipse cx='15' cy='9' rx='2.5' ry='2' transform='rotate(-45 15 9)' fill='%23f5f5f5' stroke='%23ccc' stroke-width='0.8'/%3E%3Cellipse cx='17' cy='13' rx='2.5' ry='2' transform='rotate(-45 17 13)' fill='%23f5f5f5' stroke='%23ccc' stroke-width='0.8'/%3E%3Cellipse cx='16' cy='17' rx='2' ry='1.8' transform='rotate(-45 16 17)' fill='%23f5f5f5' stroke='%23ccc' stroke-width='0.8'/%3E%3C/svg%3E") 4 4, pointer !important; }
+
     body {
       background: var(--black);
       color: var(--white);
@@ -84,7 +86,17 @@
       grid-template-rows: 1fr auto;
       padding: 56px 0 0;
       border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
     }
+    #hero-canvas {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .hero-body, .hero-footer { position: relative; z-index: 1; }
     .hero-body {
       display: flex;
       flex-direction: column;
@@ -455,6 +467,7 @@
 
   <!-- HERO -->
   <section id="hero">
+    <canvas id="hero-canvas"></canvas>
     <div class="hero-body">
       <p class="hero-tag">Product &amp; Engineering Lead — Kyiv</p>
       <h1 class="hero-name">
@@ -686,6 +699,107 @@
   </footer>
 
   <script>
+    /* ── Hero canvas: interactive dot grid ── */
+    (function () {
+      const canvas = document.getElementById('hero-canvas');
+      const ctx = canvas.getContext('2d');
+      const SPACING = 44;
+      const DOT_R = 1.2;
+      const REPEL_R = 130;
+      const REPEL_FORCE = 52;
+      const CONNECT_R = 90;
+
+      let mouse = { x: -9999, y: -9999 };
+      let dots = [];
+
+      function build() {
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+        dots = [];
+        const cols = Math.ceil(canvas.width  / SPACING) + 1;
+        const rows = Math.ceil(canvas.height / SPACING) + 1;
+        for (let r = 0; r < rows; r++) {
+          for (let c = 0; c < cols; c++) {
+            dots.push({ ox: c * SPACING, oy: r * SPACING,
+                         x:  c * SPACING,  y: r * SPACING,
+                         vx: 0, vy: 0 });
+          }
+        }
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        /* update positions */
+        for (const d of dots) {
+          const dx = d.x - mouse.x, dy = d.y - mouse.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          let rx = 0, ry = 0;
+          if (dist < REPEL_R && dist > 0) {
+            const f = (1 - dist / REPEL_R) * REPEL_FORCE;
+            rx = (dx / dist) * f;
+            ry = (dy / dist) * f;
+          }
+          d.vx = (d.vx + (d.ox - d.x) * 0.08 + rx) * 0.75;
+          d.vy = (d.vy + (d.oy - d.y) * 0.08 + ry) * 0.75;
+          d.x += d.vx;
+          d.y += d.vy;
+        }
+
+        /* draw lines between nearby dots when mouse is close */
+        ctx.strokeStyle = 'rgba(255,255,255,0.06)';
+        ctx.lineWidth = 0.5;
+        for (let i = 0; i < dots.length; i++) {
+          const a = dots[i];
+          const dax = a.x - mouse.x, day = a.y - mouse.y;
+          const daMouse = Math.sqrt(dax * dax + day * day);
+          if (daMouse > REPEL_R * 1.4) continue;
+          for (let j = i + 1; j < dots.length; j++) {
+            const b = dots[j];
+            const ddx = a.x - b.x, ddy = a.y - b.y;
+            const dd = Math.sqrt(ddx * ddx + ddy * ddy);
+            if (dd < CONNECT_R) {
+              const alpha = (1 - dd / CONNECT_R) * 0.18 * (1 - daMouse / (REPEL_R * 1.4));
+              ctx.strokeStyle = `rgba(255,255,255,${alpha})`;
+              ctx.beginPath();
+              ctx.moveTo(a.x, a.y);
+              ctx.lineTo(b.x, b.y);
+              ctx.stroke();
+            }
+          }
+        }
+
+        /* draw dots */
+        for (const d of dots) {
+          const dx = d.x - mouse.x, dy = d.y - mouse.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          const alpha = dist < REPEL_R
+            ? 0.6 + (1 - dist / REPEL_R) * 0.4
+            : 0.6;
+          ctx.beginPath();
+          ctx.arc(d.x, d.y, DOT_R, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(255,255,255,${alpha})`;
+          ctx.fill();
+        }
+
+        requestAnimationFrame(draw);
+      }
+
+      build();
+      draw();
+
+      window.addEventListener('resize', build);
+
+      document.getElementById('hero').addEventListener('mousemove', e => {
+        const r = canvas.getBoundingClientRect();
+        mouse.x = e.clientX - r.left;
+        mouse.y = e.clientY - r.top;
+      });
+      document.getElementById('hero').addEventListener('mouseleave', () => {
+        mouse.x = -9999; mouse.y = -9999;
+      });
+    })();
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting) {
