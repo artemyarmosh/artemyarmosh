@@ -29,7 +29,7 @@
 
     html { scroll-behavior: smooth; }
 
-    * { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3C!-- red stick body --%3E%3Cline x1='52' y1='52' x2='26' y2='26' stroke='%23d32f2f' stroke-width='5' stroke-linecap='round'/%3E%3C!-- silver metal section --%3E%3Cline x1='26' y1='26' x2='16' y2='16' stroke='%23bdbdbd' stroke-width='3.5' stroke-linecap='round'/%3E%3Cline x1='23' y1='23' x2='19' y2='19' stroke='%23e0e0e0' stroke-width='1' stroke-linecap='round'/%3E%3C!-- white hand base --%3E%3Cellipse cx='13' cy='13' rx='5' ry='4' transform='rotate(-45 13 13)' fill='%23f5f5f5' stroke='%23ccc' stroke-width='0.8'/%3E%3C!-- index finger pointing --%3E%3Crect x='3' y='2' width='4' height='9' rx='2' fill='%23f5f5f5' stroke='%23ccc' stroke-width='0.8' transform='rotate(-45 5 6)'/%3E%3C!-- curled fingers --%3E%3Cellipse cx='15' cy='9' rx='2.5' ry='2' transform='rotate(-45 15 9)' fill='%23f5f5f5' stroke='%23ccc' stroke-width='0.8'/%3E%3Cellipse cx='17' cy='13' rx='2.5' ry='2' transform='rotate(-45 17 13)' fill='%23f5f5f5' stroke='%23ccc' stroke-width='0.8'/%3E%3Cellipse cx='16' cy='17' rx='2' ry='1.8' transform='rotate(-45 16 17)' fill='%23f5f5f5' stroke='%23ccc' stroke-width='0.8'/%3E%3C/svg%3E") 4 4, pointer !important; }
+    * { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cline x1='54' y1='54' x2='24' y2='24' stroke='%23b71c1c' stroke-width='6' stroke-linecap='round'/%3E%3Cline x1='52' y1='55' x2='25' y2='27' stroke='%23ef5350' stroke-width='2' stroke-linecap='round' opacity='0.5'/%3E%3Cg transform='translate(12,12) rotate(-45)'%3E%3Crect x='-4' y='0' width='20' height='13' rx='5' fill='white' stroke='%23222' stroke-width='1.5'/%3E%3Crect x='-3.5' y='-13' width='7' height='15' rx='3.5' fill='white' stroke='%23222' stroke-width='1.5'/%3E%3Crect x='4' y='-7' width='5' height='9' rx='2.5' fill='white' stroke='%23222' stroke-width='1.5'/%3E%3Crect x='10' y='-4' width='4.5' height='6' rx='2' fill='white' stroke='%23222' stroke-width='1.5'/%3E%3C/g%3E%3C/svg%3E") 3 3, pointer !important; }
 
     body {
       background: var(--black);
@@ -423,6 +423,21 @@
       50% { opacity: 0.3; }
     }
 
+    /* ─── MORE LINK ──────────────────────────── */
+    .exp-more-link {
+      display: inline-block;
+      margin-top: 20px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--grey-3);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .exp-more-link:hover { color: var(--white); border-color: var(--grey-3); }
+
     /* ─── SCROLL REVEAL ───────────────────────── */
     .reveal {
       opacity: 0;
@@ -497,10 +512,9 @@
     </div>
     <div class="about-content-col reveal">
       <p class="about-text">
-        I've built apps from scratch, led cross-functional teams, and shipped at real scale —
-        across <strong>sports tech</strong>, <strong>live experiences</strong>, and <strong>Web3</strong>.
-        I work at the intersection of product strategy and engineering, turning ambiguous problems
-        into products people actually use.
+        Product and engineering lead, with 7 years of experience. I've built apps from scratch, led cross-functional
+        teams, and shipped things at real scale across <strong>sports tech</strong>, <strong>live experiences</strong>, and <strong>Web3</strong>.
+        Looking for a full-time Head of Product or Senior Product Manager role.
       </p>
     </div>
   </section>
@@ -525,10 +539,11 @@
         <p class="exp-role-title">Product Manager / Engineering Manager</p>
         <p class="exp-desc">Kyiv-based development &amp; design bureau building digital products for businesses and creators.</p>
         <ul class="exp-bullets">
-          <li><span>Overseeing product direction and delivery across showcase sites, e-commerce, and media platforms</span></li>
-          <li><span>Coordinating cross-functional work between design and engineering teams</span></li>
+          <li><span>Overseeing product direction and delivery across client projects spanning showcase sites, e-commerce, and media platforms</span></li>
+          <li><span>Coordinating cross-functional work between design and engineering teams, ensuring quality and timeline alignment</span></li>
           <li><span>Contributing to architectural decisions and external integration strategies</span></li>
         </ul>
+        <a class="exp-more-link" href="https://entireframework.com/" target="_blank" rel="noopener">More about Entire Framework ↗</a>
       </div>
     </div>
 
@@ -541,13 +556,17 @@
       </div>
       <div class="exp-right">
         <p class="exp-role-title">Product Manager / Engineering Manager</p>
-        <p class="exp-desc">Sports engineering company specialising in digital content platforms and livescore services for sport organisations worldwide.</p>
+        <p class="exp-desc">Sports engineering company specializing in digital content platforms and livescore services for the sport organizations around the world.</p>
         <ul class="exp-bullets">
-          <li><span>Digital membership platform across <span class="stat">25+ football clubs</span> — <span class="stat">12M downloads</span>, <span class="stat">500K+ paying users</span></span></li>
-          <li><span>Led a team of 10 building a white-label product from 0 to 1, driving <span class="stat">~70% increase in client digital revenue</span></span></li>
-          <li><span>BigQuery data analysis and A/B testing to redesign onboarding, improving conversion rates</span></li>
-          <li><span>Introduced subscription models that increased retention for existing subscribers</span></li>
+          <li><span>Developed and managed a digital membership platform used by over <span class="stat">25 football clubs</span>, achieving <span class="stat">12M downloads</span> and <span class="stat">500K+ paying users</span></span></li>
+          <li><span>Led a cross-functional team of 10 in building a white-label product from concept to launch, resulting in an increase of <span class="stat">~70% in client digital revenue</span> on average</span></li>
+          <li><span>Conducted A/B testing to optimize app onboarding</span></li>
+          <li><span>Conducted data analysis in BigQuery to identify drop-off patterns, informing a full onboarding redesign that improved conversion rates</span></li>
+          <li><span>Tracked and reported on core product metrics, using data insights to drive prioritisation and roadmap decisions</span></li>
+          <li><span>Introduced new subscription models, increasing retention for existing subscribers</span></li>
+          <li><span>Led a complete CMS redesign, rethinking how content was managed across <span class="stat">25+ clubs</span> at scale</span></li>
         </ul>
+        <a class="exp-more-link" href="https://www.linkedin.com/company/forza-club" target="_blank" rel="noopener">More about Forza Clubs ↗</a>
       </div>
     </div>
 
@@ -560,12 +579,13 @@
       </div>
       <div class="exp-right">
         <p class="exp-role-title">Product Manager</p>
-        <p class="exp-desc">Personal co-operating system — a multiplayer layer for the internet focused on co-creation.</p>
+        <p class="exp-desc">Personal assistant management environment integrating apps, users, and communities — designed as a multiplayer layer for the internet focused on co-creation.</p>
         <ul class="exp-bullets">
-          <li><span>Led product delivery for a live concert experience for Victor Leksell — synchronised <span class="stat">20,000+ audience devices</span> in real time with an interactive AI avatar and light show</span></li>
-          <li><span>Redefined product engineering strategy and feature roadmap for the collaboration platform</span></li>
+          <li><span>Led product delivery for a live concert experience built for Swedish artist Victor Leksell — synchronizing <span class="stat">20,000+ audience devices</span> in real time, including an interactive AI avatar and light show</span></li>
+          <li><span>Redefined product engineering strategy and feature roadmap for the broader collaboration platform</span></li>
           <li><span>Coordinated delivery across design, engineering, and community teams</span></li>
         </ul>
+        <a class="exp-more-link" href="https://www.iris.me/" target="_blank" rel="noopener">More about IRIS ↗</a>
       </div>
     </div>
 
@@ -580,11 +600,12 @@
         <p class="exp-role-title">Product Manager / People Operations</p>
         <p class="exp-desc">Web3 product studio focused on gamification and NFT ecosystem tools.</p>
         <ul class="exp-bullets">
-          <li><span>Shipped NFT projects for <span class="stat">Snoop Dogg and Björn Borg</span></span></li>
-          <li><span>Built Shortlist — a waitlist tool converting <span class="stat">75% of signups</span> into active platform users</span></li>
+          <li><span>Shipped NFT projects for <span class="stat">Snoop Dogg and Björn Borg</span>, driving platform credibility in the Web3 space</span></li>
+          <li><span>Built and launched Shortlist — a waitlist tool that converted <span class="stat">75% of signups</span> into active platform users</span></li>
           <li><span>Drove an NFT payment solution enabling credit card purchases from concept to launch</span></li>
-          <li><span>Managed hiring pipeline and team operations alongside product delivery</span></li>
+          <li><span>Managed hiring pipeline and team operations</span></li>
         </ul>
+        <a class="exp-more-link" href="https://www.ikonia.com/" target="_blank" rel="noopener">More about Ikonia ↗</a>
       </div>
     </div>
 
@@ -597,11 +618,38 @@
       </div>
       <div class="exp-right">
         <p class="exp-role-title">Project Manager / People Operations</p>
-        <p class="exp-desc">Software engineering company specialising in Facebook apps and games.</p>
+        <p class="exp-desc">Software engineering company specializing in Facebook apps and games.</p>
         <ul class="exp-bullets">
-          <li><span>Managed project delivery timelines and client communications across multiple concurrent projects</span></li>
+          <li><span>Managed project delivery timelines and client communications for multiple concurrent projects</span></li>
           <li><span>Handled recruitment, onboarding, and day-to-day team operations</span></li>
         </ul>
+        <a class="exp-more-link" href="https://logics7.com/" target="_blank" rel="noopener">More about Logics7 ↗</a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- OTHER -->
+  <section id="experience" style="border-bottom: 1px solid var(--border);">
+    <div class="exp-header">
+      <span class="section-label">Other</span>
+      <div class="exp-header-right"></div>
+    </div>
+
+    <!-- Biorhythm -->
+    <div class="exp-row reveal">
+      <div class="exp-left">
+        <p class="exp-company-name">Biorhythm</p>
+        <p class="exp-period">Dec 2019 — Present</p>
+        <span class="exp-badge">Non-profit</span>
+      </div>
+      <div class="exp-right">
+        <p class="exp-role-title">Producer</p>
+        <p class="exp-desc">Non-profit organization focused on audio-visual performances and ecological activism in Kyiv.</p>
+        <ul class="exp-bullets">
+          <li><span>Produced and coordinated multi-format cultural events combining live music, visual art, and environmental messaging</span></li>
+        </ul>
+        <a class="exp-more-link" href="https://biorhythm.me/" target="_blank" rel="noopener">More about Biorhythm ↗</a>
       </div>
     </div>
 
