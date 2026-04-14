@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Артем Ярмош — CV</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23000'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='system-ui,sans-serif' font-weight='700' font-size='13' letter-spacing='-0.5' fill='white'%3EАЯ%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    * { cursor: none !important; }
+    ::selection { background: #000; color: #fff; }
+
+    body {
+      background: #fff;
+      color: #000;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 13px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 52px 40px 80px;
+    }
+
+    /* ── HEADER ── */
+    .cv-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0 32px;
+      align-items: start;
+      margin-bottom: 28px;
+      padding-bottom: 20px;
+      border-bottom: 1.5px solid #000;
+    }
+
+    .cv-name {
+      font-size: 21px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 3px;
+    }
+
+    .cv-sub {
+      font-size: 12px;
+      color: #666;
+    }
+
+    .cv-contact {
+      text-align: right;
+      font-size: 11.5px;
+      line-height: 1.85;
+    }
+
+    .cv-contact a {
+      color: #000;
+      text-decoration: none;
+    }
+    .cv-contact a:hover { text-decoration: underline; }
+
+    /* ── SECTIONS ── */
+    .section {
+      margin-bottom: 24px;
+    }
+
+    .section-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid #000;
+    }
+
+    /* ── SUMMARY ── */
+    .summary-text {
+      font-size: 12.5px;
+      line-height: 1.65;
+      color: #111;
+    }
+
+    /* ── EXPERIENCE ROWS ── */
+    .exp-row {
+      display: grid;
+      grid-template-columns: 112px 1fr;
+      gap: 0 20px;
+      margin-bottom: 20px;
+    }
+    .exp-row:last-child { margin-bottom: 0; }
+
+    .exp-date {
+      font-size: 11px;
+      color: #666;
+      padding-top: 1px;
+      line-height: 1.5;
+    }
+
+    .exp-right {}
+
+    .exp-title-line {
+      font-size: 12.5px;
+      font-weight: 600;
+      margin-bottom: 4px;
+      line-height: 1.4;
+    }
+
+    .exp-desc {
+      font-size: 11.5px;
+      color: #555;
+      font-style: italic;
+      margin-bottom: 7px;
+      line-height: 1.55;
+    }
+
+    .exp-bullets {
+      list-style: none;
+      margin-bottom: 8px;
+    }
+    .exp-bullets li {
+      font-size: 11.5px;
+      color: #222;
+      line-height: 1.6;
+      padding-left: 12px;
+      position: relative;
+      margin-bottom: 2px;
+    }
+    .exp-bullets li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: #888;
+    }
+    .stat { font-weight: 600; }
+
+    .more-link {
+      display: inline-block;
+      font-size: 11px;
+      color: #0052cc;
+      text-decoration: none;
+      margin-top: 4px;
+    }
+    .more-link:hover { text-decoration: underline; }
+
+    /* club apps */
+    .club-apps { margin: 8px 0 8px; }
+    .club-apps-lbl {
+      font-size: 10px;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 5px;
+    }
+    .club-apps-list { display: flex; gap: 6px; flex-wrap: wrap; }
+    .club-app-link {
+      display: flex; align-items: center; gap: 6px;
+      padding: 3px 9px 3px 5px;
+      border: 1px solid #ddd;
+      text-decoration: none;
+      color: #333;
+      font-size: 10.5px;
+      transition: border-color .15s;
+    }
+    .club-app-link:hover { border-color: #999; }
+    .club-app-link svg { border-radius: 50%; }
+
+    /* ── SKILLS ── */
+    .skills-block {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .skill-line {
+      font-size: 12px;
+      line-height: 1.6;
+      color: #222;
+    }
+    .skill-line strong {
+      font-weight: 600;
+      color: #000;
+    }
+
+    /* ── SIMPLE LIST (languages, interests) ── */
+    .simple-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 24px;
+      font-size: 12.5px;
+      color: #222;
+    }
+
+    /* ── EDUCATION ROW ── */
+    .edu-row {
+      display: grid;
+      grid-template-columns: 112px 1fr;
+      gap: 0 20px;
+    }
+    .edu-date {
+      font-size: 11px;
+      color: #666;
+      padding-top: 1px;
+    }
+    .edu-right {}
+    .edu-name {
+      font-size: 12.5px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+    .edu-detail {
+      font-size: 11.5px;
+      color: #555;
+    }
+
+    /* ── PROJECT EXAMPLES ── */
+    .proj-examples {
+      margin: 8px 0 6px;
+    }
+    .proj-label {
+      font-size: 10px;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 5px;
+    }
+    .proj-list {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px 14px;
+    }
+    .proj-link {
+      font-size: 11px;
+      color: #0052cc;
+      text-decoration: none;
+    }
+    .proj-link:hover { text-decoration: underline; }
+    .proj-nda {
+      font-size: 11px;
+      color: #999;
+      font-style: italic;
+    }
+
+    /* ── CURSOR ── */
+    #cur-dot, #cur-ring {
+      position: fixed; top: 0; left: 0;
+      pointer-events: none; z-index: 99999;
+      border-radius: 50%;
+      mix-blend-mode: difference;
+      will-change: transform;
+    }
+    #cur-dot {
+      width: 6px; height: 6px;
+      background: #fff;
+      margin: -3px 0 0 -3px;
+    }
+    #cur-ring {
+      width: 28px; height: 28px;
+      border: 1px solid #fff;
+      margin: -14px 0 0 -14px;
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 560px) {
+      .page { padding: 32px 20px 60px; }
+      .cv-header { grid-template-columns: 1fr; gap: 12px; }
+      .cv-contact { text-align: left; }
+      .exp-row, .edu-row { grid-template-columns: 1fr; gap: 2px; }
+      .exp-date, .edu-date { color: #888; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <header class="cv-header">
+    <div>
+      <h1 class="cv-name">Артем Ярмош</h1>
+      <p class="cv-sub">Київ</p>
+    </div>
+    <div class="cv-contact">
+      <a href="mailto:art.yarmosh@gmail.com">art.yarmosh@gmail.com</a><br>
+      <a href="https://t.me/artyarmosh" target="_blank" rel="noopener">t.me/artyarmosh</a><br>
+      <a href="tel:+380631526797">+380 63 152 6797</a><br>
+      <a href="https://linkedin.com/in/artem-yarmosh-349b6b160/" target="_blank" rel="noopener">linkedin.com/in/artem-yarmosh-349b6b160</a>
+    </div>
+  </header>
+
+  <!-- SUMMARY -->
+  <section class="section">
+    <h2 class="section-title">Про себе</h2>
+    <p class="summary-text">Продуктовий і технічний лід із 7 роками досвіду. Будував продукти з нуля, керував крос-функціональними командами, запускав речі в реальному масштабі. Шукаю повну зайнятість на позиції Head of Product або Senior Product Manager.</p>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="section">
+    <h2 class="section-title">Досвід</h2>
+
+    <div class="exp-row">
+      <div class="exp-date">Вер 2024 — тепер</div>
+      <div class="exp-right">
+        <p class="exp-title-line">Entire Framework, Product Manager / Engineering Manager, Агенція</p>
+        <p class="exp-desc">Агенція розробки та дизайну. Будуємо сайти, e-commerce та медіаінструменти.</p>
+        <ul class="exp-bullets">
+          <li>Керую продуктовим напрямком і delivery клієнтських проєктів — сайти-портфоліо, e-commerce, медіаплатформи</li>
+          <li>Координую роботу між дизайном і розробкою, слідкую за якістю й термінами</li>
+          <li>Беру участь в архітектурних рішеннях і стратегії зовнішніх інтеграцій</li>
+        </ul>
+        <div class="proj-examples">
+          <p class="proj-label">Клієнтські проєкти</p>
+          <div class="proj-list">
+            <a class="proj-link" href="https://banda.agency/" target="_blank" rel="noopener">banda.agency ↗</a>
+            <a class="proj-link" href="https://spells-ai.com/" target="_blank" rel="noopener">spells-ai.com ↗</a>
+            <span class="proj-nda">+ інші проєкти — за запитом (NDA)</span>
+          </div>
+        </div>
+        <a class="more-link" href="https://entireframework.com/" target="_blank" rel="noopener">Більше про Entire Framework</a>
+      </div>
+    </div>
+
+    <div class="exp-row">
+      <div class="exp-date">Бер 2019 — Кві 2026</div>
+      <div class="exp-right">
+        <p class="exp-title-line">Forza Clubs, Product Manager / Engineering Manager, Повна зайнятість</p>
+        <p class="exp-desc">Спортивна інжинірингова компанія, що спеціалізується на цифрових контентних платформах і сервісах livescore для спортивних організацій по всьому світу.</p>
+        <ul class="exp-bullets">
+          <li>Розробив і керував платформою цифрового членства, яку використовують понад <span class="stat">25 футбольних клубів</span> — <span class="stat">12М завантажень</span> і <span class="stat">500К+ платних користувачів</span></li>
+          <li>Керував крос-функціональною командою з 10 людей у побудові white-label продукту від концепції до запуску, що збільшило цифровий дохід клієнтів в середньому на <span class="stat">~70%</span></li>
+          <li>Проводив A/B тестування для оптимізації онбордингу застосунку</li>
+          <li>Аналізував дані в BigQuery для виявлення точок відтоку — це лягло в основу повного редизайну онбордингу і покращило конверсію</li>
+          <li>Відстежував і звітував по ключових продуктових метриках, використовував дані для пріоритизації і роадмапу</li>
+          <li>Впровадив нові моделі підписок, що підвищило утримання наявних підписників</li>
+        </ul>
+        <div class="club-apps">
+          <p class="club-apps-lbl">Застосунки клієнтів</p>
+          <div class="club-apps-list">
+            <a class="club-app-link" href="https://agf.app.link/lD8UJUTvXHb" target="_blank" rel="noopener">
+              <svg width="16" height="16" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#003087"/><text x="12" y="16.5" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="700" font-size="7.5" fill="white">AGF</text></svg>AGF
+            </a>
+            <a class="club-app-link" href="https://aik.app.link/seep7crJd2b" target="_blank" rel="noopener">
+              <svg width="16" height="16" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#111"/><circle cx="12" cy="12" r="11" fill="none" stroke="#f5c01a" stroke-width="1.5"/><text x="12" y="16.5" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="700" font-size="7.5" fill="#f5c01a">AIK</text></svg>AIK
+            </a>
+            <a class="club-app-link" href="https://ifk.app.link/dO0tCLUq0Cb" target="_blank" rel="noopener">
+              <svg width="16" height="16" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#003399"/><text x="12" y="16.5" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="700" font-size="7.5" fill="white">IFK</text></svg>IFK
+            </a>
+          </div>
+        </div>
+        <a class="more-link" href="https://www.linkedin.com/company/forza-club" target="_blank" rel="noopener">Більше про Forza Clubs</a>
+      </div>
+    </div>
+
+    <div class="exp-row">
+      <div class="exp-date">Гру 2023 — Лис 2024</div>
+      <div class="exp-right">
+        <p class="exp-title-line">IRIS, Product Manager, Контракт</p>
+        <p class="exp-desc">Середовище управління персональним асистентом, що інтегрує застосунки, користувачів і спільноти — мультиплеєрний шар для інтернету з фокусом на співтворчість.</p>
+        <ul class="exp-bullets">
+          <li>Керував delivery живого концертного досвіду для шведського артиста Victor Leksell — синхронізував <span class="stat">20 000+ пристроїв аудиторії</span> в реальному часі, включно з інтерактивним AI-аватаром і світловим шоу</li>
+          <li>Переосмислив стратегію продуктової розробки та фічерний роадмап для ширшої платформи</li>
+          <li>Координував delivery між командами дизайну, розробки та спільноти</li>
+        </ul>
+        <a class="more-link" href="https://www.iris.me/" target="_blank" rel="noopener">Більше про IRIS</a>
+      </div>
+    </div>
+
+    <div class="exp-row">
+      <div class="exp-date">Бер 2022 — Чер 2023</div>
+      <div class="exp-right">
+        <p class="exp-title-line">Ikonia, Product Manager / People Operations, Контракт</p>
+        <p class="exp-desc">Web3-продуктова студія з фокусом на гейміфікацію та NFT-екосистемні інструменти.</p>
+        <ul class="exp-bullets">
+          <li>Запустив NFT-проєкти для <span class="stat">Snoop Dogg і Björn Borg</span>, зміцнивши репутацію платформи у Web3</li>
+          <li>Побудував і запустив Shortlist — вейтліст-інструмент, що конвертував <span class="stat">75% реєстрацій</span> у активних користувачів платформи</li>
+          <li>Від концепції до запуску вивів рішення для оплати NFT кредитною карткою</li>
+          <li>Керував воронкою найму та операційними процесами команди</li>
+        </ul>
+        <a class="more-link" href="https://www.ikonia.com/" target="_blank" rel="noopener">Більше про Ikonia</a>
+      </div>
+    </div>
+
+    <div class="exp-row">
+      <div class="exp-date">Гру 2017 — Тра 2019</div>
+      <div class="exp-right">
+        <p class="exp-title-line">Logics7, Project Manager / People Operations, Повна зайнятість</p>
+        <p class="exp-desc">Компанія з розробки програмного забезпечення, що спеціалізується на Facebook-застосунках і іграх.</p>
+        <ul class="exp-bullets">
+          <li>Керував термінами delivery та комунікацією з клієнтами по кількох паралельних проєктах</li>
+          <li>Займався рекрутингом, онбордингом і щоденними операційними процесами команди</li>
+        </ul>
+        <a class="more-link" href="https://logics7.com/" target="_blank" rel="noopener">Більше про Logics7</a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- OTHER -->
+  <section class="section">
+    <h2 class="section-title">Інше</h2>
+
+    <div class="exp-row">
+      <div class="exp-date">Гру 2019 — тепер</div>
+      <div class="exp-right">
+        <p class="exp-title-line">Biorhythm, Продюсер, Некомерційна організація</p>
+        <p class="exp-desc">Некомерційна організація, що займається аудіовізуальними перформансами та екологічним активізмом у Києві.</p>
+        <ul class="exp-bullets">
+          <li>Продюсував і координував мультиформатні культурні події, що поєднують живу музику, візуальне мистецтво та екологічні меседжі</li>
+        </ul>
+        <a class="more-link" href="https://biorhythm.me/" target="_blank" rel="noopener">Більше про Biorhythm</a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- EDUCATION -->
+  <section class="section">
+    <h2 class="section-title">Освіта</h2>
+    <div class="edu-row">
+      <div class="edu-date">2015 — 2021</div>
+      <div class="edu-right">
+        <p class="edu-name">Національний університет біоресурсів і природокористування України</p>
+        <p class="edu-detail">Магістр, Екологія</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section">
+    <h2 class="section-title">Навички</h2>
+    <div class="skills-block">
+      <p class="skill-line"><strong>Інструменти:</strong> Claude Code, Claude Cowork, Figma, Jira, ClickUp, Linear, MindMeister, Firebase, PostHog, Branch.io, GitHub, GitLab</p>
+      <p class="skill-line"><strong>Методи:</strong> AI-прототипування (v0, Cursor), GPT / Claude API, LLM-дизайн продуктів, AI-агентні воркфлоу, A/B тестування, NPS, опитування користувачів, монетизація підписок, white-label продукти, крос-функціональне лідерство, оптимізація онбордингу</p>
+    </div>
+  </section>
+
+  <!-- LANGUAGES -->
+  <section class="section">
+    <h2 class="section-title">Мови</h2>
+    <div class="simple-list">
+      <span>Англійська</span>
+      <span>Українська</span>
+    </div>
+  </section>
+
+  <!-- INTERESTS -->
+  <section class="section">
+    <h2 class="section-title">Інтереси</h2>
+    <div class="simple-list">
+      <span>Технології</span>
+      <span>Електронна музика</span>
+      <span>Гітара</span>
+      <span>Барабани</span>
+      <span>Мода</span>
+      <span>Теологія</span>
+    </div>
+  </section>
+
+</div>
+
+  <!-- cursor -->
+  <div id="cur-dot"></div>
+  <div id="cur-ring"></div>
+  <script>
+  (function(){
+    const dot  = document.getElementById('cur-dot');
+    const ring = document.getElementById('cur-ring');
+    let mx=0,my=0, rx=0,ry=0, scale=1,targetScale=1;
+    function lerp(a,b,s){return a+(b-a)*s;}
+
+    document.addEventListener('mousemove',e=>{
+      mx=e.clientX; my=e.clientY;
+      dot.style.transform=`translate(${mx}px,${my}px)`;
+    });
+
+    document.addEventListener('mouseover',e=>{
+      targetScale = e.target.closest('a,button') ? 1.8 : 1;
+    });
+
+    let last=performance.now();
+    (function frame(now){
+      const dt=Math.min(now-last,40); last=now;
+      rx=lerp(rx,mx,0.12); ry=lerp(ry,my,0.12);
+      scale=lerp(scale,targetScale,0.14);
+      ring.style.transform=`translate(${rx}px,${ry}px) scale(${scale})`;
+      requestAnimationFrame(frame);
+    })(last);
+  })();
+  </script>
+
+</body>
+</html>
