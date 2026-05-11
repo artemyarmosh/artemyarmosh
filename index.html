@@ -10,7 +10,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    * { cursor: none !important; }
     ::selection { background: #000; color: #fff; }
 
     body {
@@ -246,24 +245,6 @@
       font-style: italic;
     }
 
-    /* ── CURSOR ── */
-    #cur-dot, #cur-ring {
-      position: fixed; top: 0; left: 0;
-      pointer-events: none; z-index: 99999;
-      border-radius: 50%;
-      mix-blend-mode: difference;
-      will-change: transform;
-    }
-    #cur-dot {
-      width: 6px; height: 6px;
-      background: #fff;
-      margin: -3px 0 0 -3px;
-    }
-    #cur-ring {
-      width: 28px; height: 28px;
-      border: 1px solid #fff;
-      margin: -14px 0 0 -14px;
-    }
 
     /* ── MOBILE ── */
     @media (max-width: 560px) {
@@ -462,35 +443,7 @@
 
 </div>
 
-  <!-- cursor -->
-  <div id="cur-dot"></div>
-  <div id="cur-ring"></div>
-  <script>
-  (function(){
-    const dot  = document.getElementById('cur-dot');
-    const ring = document.getElementById('cur-ring');
-    let mx=0,my=0, rx=0,ry=0, scale=1,targetScale=1;
-    function lerp(a,b,s){return a+(b-a)*s;}
 
-    document.addEventListener('mousemove',e=>{
-      mx=e.clientX; my=e.clientY;
-      dot.style.transform=`translate(${mx}px,${my}px)`;
-    });
-
-    document.addEventListener('mouseover',e=>{
-      targetScale = e.target.closest('a,button') ? 1.8 : 1;
-    });
-
-    let last=performance.now();
-    (function frame(now){
-      const dt=Math.min(now-last,40); last=now;
-      rx=lerp(rx,mx,0.12); ry=lerp(ry,my,0.12);
-      scale=lerp(scale,targetScale,0.14);
-      ring.style.transform=`translate(${rx}px,${ry}px) scale(${scale})`;
-      requestAnimationFrame(frame);
-    })(last);
-  })();
-  </script>
 
 </body>
 </html>
